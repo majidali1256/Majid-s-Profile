@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   FaMapMarkerAlt, FaEnvelope, FaGithub, FaChevronDown,
-  FaPaperPlane, FaCircle, FaCheckCircle, FaJava
+  FaPaperPlane, FaCircle, FaCheckCircle, FaJava, FaReact, FaHtml5, FaCss3Alt
 } from 'react-icons/fa';
 import {
   SiKotlin, SiPython, SiTensorflow, SiPytorch,
-  SiFirebase, SiGit, SiFigma
+  SiFirebase, SiGit, SiFigma, SiJavascript, SiMongodb
 } from 'react-icons/si';
 import profileImage from './assets/img_7316-cbnhmbo9.jpg';
 import szabistLogo from './assets/szabist-logo.png';
@@ -34,6 +34,25 @@ const scaleIn = {
 };
 
 const App = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, subject, message } = formData;
+    const mailtoLink = `mailto:majidhussain7591@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+    window.location.href = mailtoLink;
+  };
+
   return (
     <div className="bg-[#0F172A] text-gray-200 font-sans overflow-x-hidden">
 
@@ -52,7 +71,7 @@ const App = () => {
           <span className="text-gray-300">Available for Opportunities</span>
         </div>
         <div className="hidden md:block bg-indigo-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-indigo-500/20">
-          Android & Machine Learning Developer
+          Web, Android & ML Developer
         </div>
       </motion.nav>
 
@@ -72,7 +91,7 @@ const App = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-xl text-gray-400 mb-6 font-light">
-            Android & Machine Learning Developer
+            Web, Android & ML Developer | Vibe Coder
           </motion.p>
 
           <motion.p
@@ -80,7 +99,7 @@ const App = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-lg mx-auto md:mx-0 mb-10 text-gray-400 leading-relaxed">
-            I build innovative mobile applications and implement cutting-edge machine learning solutions. Passionate about creating technology that makes a difference through community building and developer mentoring.
+            I build dynamic web and Android applications, blending robust engineering with a touch of machine learning. I write my own code but also embrace "vibe coding"—leveraging AI tools when needed to streamline development and create impactful digital experiences.
           </motion.p>
 
           <motion.div
@@ -88,18 +107,20 @@ const App = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-            <motion.button
+            <motion.a
+              href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-indigo-500/30 transition-all">
+              className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-indigo-500/30 transition-all cursor-pointer block text-center">
               View My Work
-            </motion.button>
-            <motion.button
+            </motion.a>
+            <motion.a
+              href="#contact-form"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border border-gray-600 hover:border-gray-400 text-white font-semibold py-3 px-8 rounded-lg transition-all">
+              className="border border-gray-600 hover:border-gray-400 text-white font-semibold py-3 px-8 rounded-lg transition-all cursor-pointer block text-center">
               Contact Me
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
 
@@ -161,22 +182,28 @@ const App = () => {
               <h2 className="text-2xl font-bold text-white">About Me</h2>
             </div>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              I'm a passionate Android and Machine Learning developer currently pursuing my BS in Computer Science at SZABIST Islamabad. With a strong foundation in computer science principles and hands-on experience in mobile development and AI, I create solutions that bridge the gap between technology and human needs.
+              I'm a passionate Web, Android, and Machine Learning developer currently pursuing my BS in Computer Science at SZABIST Islamabad. With a strong foundation in computer science principles and hands-on experience in full-stack development and AI, I create solutions that bridge the gap between technology and human needs.
             </p>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              I value community building and developer mentoring as key achievements in my journey, always looking to share knowledge and help others grow in the field.
+              Beyond coding, I value community building and mentoring. My development philosophy blends traditional engineering with 'vibe coding'—I write robust code myself while leveraging AI to enhance productivity and solve complex problems efficiently.
             </p>
 
 
             <div className="flex flex-wrap gap-3">
               {['Leadership', 'Mentorship', 'Problem Solving', 'Creativity', 'Community'].map((badge, index) => {
-                const colors = ['blue', 'purple', 'green', 'yellow', 'red'];
-                const color = colors[index % colors.length];
+                const colorClasses = [
+                  'bg-blue-600',
+                  'bg-purple-600',
+                  'bg-green-600',
+                  'bg-yellow-600',
+                  'bg-red-600'
+                ];
+                const colorClass = colorClasses[index % colorClasses.length];
                 return (
                   <motion.span
                     key={badge}
                     whileHover={{ scale: 1.05 }}
-                    className={`px-4 py-2 bg-${color}-600 text-white text-sm font-semibold rounded-lg flex items-center gap-2 cursor-default`}>
+                    className={`px-4 py-2 ${colorClass} text-white text-sm font-semibold rounded-lg flex items-center gap-2 cursor-default`}>
                     <FaCheckCircle /> {badge}
                   </motion.span>
                 )
@@ -308,6 +335,11 @@ const App = () => {
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4"
         >
+          <SkillCard name="HTML" icon={<FaHtml5 />} color="text-orange-500" />
+          <SkillCard name="CSS" icon={<FaCss3Alt />} color="text-blue-500" />
+          <SkillCard name="JavaScript" icon={<SiJavascript />} color="text-yellow-300" />
+          <SkillCard name="React" icon={<FaReact />} color="text-blue-400" />
+          <SkillCard name="MongoDB" icon={<SiMongodb />} color="text-green-500" />
           <SkillCard name="Kotlin" icon={<SiKotlin />} color="text-purple-400" />
           <SkillCard name="Java" icon={<FaJava />} color="text-red-400" />
           <SkillCard name="Python" icon={<SiPython />} color="text-yellow-400" />
@@ -320,7 +352,7 @@ const App = () => {
       </section>
 
 
-      <section className="container mx-auto px-6 py-16">
+      <section id="projects" className="container mx-auto px-6 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -399,7 +431,7 @@ const App = () => {
               <p className="text-blue-100 text-sm mb-4">Send me a message</p>
               <p className="font-semibold text-sm mb-4">majidhussain7591@gmail.com</p>
             </div>
-            <button className="w-full bg-white text-blue-600 py-2 rounded font-bold text-sm hover:bg-blue-50 transition">Send Email</button>
+            <a href="mailto:majidhussain7591@gmail.com" className="w-full bg-white text-blue-600 py-2 rounded font-bold text-sm hover:bg-blue-50 transition text-center block">Send Email</a>
           </motion.div>
 
 
@@ -412,7 +444,7 @@ const App = () => {
               <p className="text-gray-400 text-sm mb-4">View my projects</p>
               <p className="font-semibold text-sm mb-4">github.com/majidali1256</p>
             </div>
-            <button className="w-full bg-gray-700 text-white py-2 rounded font-bold text-sm hover:bg-gray-600 transition">View Profile</button>
+            <a href="https://github.com/majidali1256" target="_blank" rel="noopener noreferrer" className="w-full bg-gray-700 text-white py-2 rounded font-bold text-sm hover:bg-gray-600 transition text-center block">View Profile</a>
           </motion.div>
 
 
@@ -425,9 +457,9 @@ const App = () => {
               <p className="text-green-100 text-sm mb-4">Currently based in</p>
               <p className="font-semibold text-sm mb-4">Islamabad, Pakistan</p>
             </div>
-            <button className="w-full bg-green-500 border border-green-400 text-white py-2 rounded font-bold text-sm flex items-center justify-center gap-2">
+            <a href="#contact-form" className="w-full bg-green-500 border border-green-400 text-white py-2 rounded font-bold text-sm flex items-center justify-center gap-2">
               <div className="w-2 h-2 bg-white rounded-full"></div> Available for Remote Work
-            </button>
+            </a>
           </motion.div>
         </motion.div>
 
@@ -447,35 +479,68 @@ const App = () => {
               <li className="flex items-center gap-3"><span className="w-3 h-3 bg-green-400 rounded-full"></span> I'll respond within 24-48 hours</li>
               <li className="flex items-center gap-3"><span className="w-3 h-3 bg-green-400 rounded-full"></span> Available for remote work opportunities</li>
               <li className="flex items-center gap-3"><span className="w-3 h-3 bg-green-400 rounded-full"></span> Based in Islamabad, Pakistan</li>
-              <li className="flex items-center gap-3"><span className="w-3 h-3 bg-blue-400 rounded-full"></span> majidhussain7591@gmail.com</li>
+              <li className="flex items-center gap-3"><span className="w-3 h-3 bg-green-400 rounded-full"></span> majidhussain7591@gmail.com</li>
             </ul>
           </div>
 
 
-          <div className="md:w-1/2 bg-[#0F172A]/50 p-10 md:p-12 backdrop-blur-sm">
+          <div id="contact-form" className="md:w-1/2 bg-[#0F172A]/50 p-10 md:p-12 backdrop-blur-sm">
             <h4 className="text-xl font-bold text-white mb-6">Send me a Message</h4>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs text-gray-400 mb-1">Name</label>
-                  <input type="text" className="w-full bg-gray-700/50 border border-gray-600 rounded p-2.5 text-sm text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="Your full name" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-700/50 border border-gray-600 rounded p-2.5 text-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+                    placeholder="Your full name"
+                    required
+                  />
                 </div>
                 <div>
                   <label className="block text-xs text-gray-400 mb-1">Email</label>
-                  <input type="email" className="w-full bg-gray-700/50 border border-gray-600 rounded p-2.5 text-sm text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="your.email@example.com" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-700/50 border border-gray-600 rounded p-2.5 text-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+                    placeholder="your.email@example.com"
+                    required
+                  />
                 </div>
               </div>
               <div>
                 <label className="block text-xs text-gray-400 mb-1">Subject</label>
-                <input type="text" className="w-full bg-gray-700/50 border border-gray-600 rounded p-2.5 text-sm text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="What is this regarding?" />
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-700/50 border border-gray-600 rounded p-2.5 text-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+                  placeholder="What is this regarding?"
+                  required
+                />
               </div>
               <div>
                 <label className="block text-xs text-gray-400 mb-1">Message</label>
-                <textarea rows={4} className="w-full bg-gray-700/50 border border-gray-600 rounded p-2.5 text-sm text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="Please provide as much detail as possible..."></textarea>
+                <textarea
+                  rows={4}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  className="w-full bg-gray-700/50 border border-gray-600 rounded p-2.5 text-sm text-white focus:outline-none focus:border-purple-500 transition-colors"
+                  placeholder="Please provide as much detail as possible..."
+                  required
+                ></textarea>
               </div>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                type="submit"
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 rounded transition flex items-center justify-center gap-2">
                 Send Message <FaPaperPlane className="text-xs" />
               </motion.button>
@@ -487,7 +552,7 @@ const App = () => {
 
       <footer className="bg-[#0B1120] py-8 text-center text-gray-500 text-sm border-t border-gray-800">
         <p className="mb-1">&copy; 2025 Majid Ali. All rights reserved.</p>
-        <p>Android & Machine Learning Developer</p>
+        <p>Web, Android & ML Developer</p>
       </footer>
     </div>
   );
