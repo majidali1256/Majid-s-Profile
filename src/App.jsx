@@ -379,6 +379,13 @@ const App = () => {
           className="grid md:grid-cols-3 gap-8"
         >
           <ProjectCard
+            color="bg-cyan-600"
+            title="Health Tracker App"
+            description="Android application for monitoring health metrics with real-time data visualization."
+            tags={['Java', 'Firebase', 'Room DB']}
+            link="https://github.com/majidali1256/HealthTrackerApp"
+          />
+          <ProjectCard
             color="bg-blue-600"
             title="Dast Store"
             description="A modern E-Commerce platform with a fully functional shopping cart, seamless checkout process, and state persistence."
