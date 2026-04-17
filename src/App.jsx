@@ -380,21 +380,38 @@ const App = () => {
         >
           <ProjectCard
             color="bg-blue-600"
-            title="Health Tracker App"
-            description="Android application for monitoring health metrics with real-time data visualization"
-            tags={['Kotlin', 'Firebase', 'Room DB']}
+            title="Dast Store"
+            description="A modern E-Commerce platform with a fully functional shopping cart, seamless checkout process, and state persistence."
+            tags={['JavaScript', 'React', 'E-commerce']}
+            link="https://github.com/majidali1256/Dast-Store"
           />
           <ProjectCard
             color="bg-green-600"
-            title="Image Recognition ML"
-            description="Machine learning model for object detection and classification in images"
-            tags={['Python', 'TensorFlow', 'OpenCV']}
+            title="Hostel Hub WebApp"
+            description="A comprehensive platform with AI-powered features for search, price estimation, and personalized recommendations."
+            tags={['TypeScript', 'React', 'Gemini AI']}
+            link="https://github.com/majidali1256/Hostel-Hub"
           />
           <ProjectCard
             color="bg-purple-600"
-            title="E-commerce Android App"
-            description="Full-featured e-commerce platform with payment integration"
-            tags={['Java', 'Retrofit', 'MVVM']}
+            title="Hostel Hub Mobile App"
+            description="Native Android application for hostel management providing seamless onboarding and user experiences."
+            tags={['Kotlin', 'Java', 'Android']}
+            link="https://github.com/majidali1256/HostelHubApp"
+          />
+          <ProjectCard
+            color="bg-yellow-600"
+            title="Dezan Digitizing"
+            description="Professional business website featuring custom backend for handling unlimited, large-file attachments directly to the server."
+            tags={['HTML', 'PHP', 'Web Development']}
+            link="https://github.com/majidali1256/dezan-digitizing"
+          />
+          <ProjectCard
+            color="bg-red-600"
+            title="Majid's Profile 1"
+            description="A personal portfolio website showcasing professional details, projects, and educational background with dynamic aesthetics."
+            tags={['TypeScript', 'React', 'Portfolio']}
+            link="https://github.com/majidali1256/Profile-1"
           />
         </motion.div>
       </section>
@@ -597,7 +614,7 @@ const SkillCard = ({ name, icon, color }) => (
   </motion.div>
 );
 
-const ProjectCard = ({ color, title, description, tags }) => (
+const ProjectCard = ({ color, title, description, tags, link }) => (
   <motion.div
     variants={fadeInUp}
     whileHover={{ y: -10 }}
@@ -613,12 +630,15 @@ const ProjectCard = ({ color, title, description, tags }) => (
           <span key={tag} className="px-3 py-1 bg-gray-700 text-gray-300 text-xs rounded-full">{tag}</span>
         ))}
       </div>
-      <motion.button
+      <motion.a
+        href={link || "#"}
+        target={link ? "_blank" : "_self"}
+        rel={link ? "noopener noreferrer" : ""}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full bg-gray-700/50 hover:bg-gray-700 text-white py-2 rounded text-sm font-semibold transition-colors">
+        className="w-full block text-center bg-gray-700/50 hover:bg-gray-700 text-white py-2 rounded text-sm font-semibold transition-colors">
         View Project Details
-      </motion.button>
+      </motion.a>
     </div>
   </motion.div>
 );
