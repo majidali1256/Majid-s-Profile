@@ -379,46 +379,60 @@ const App = () => {
           className="grid md:grid-cols-3 gap-8"
         >
           <ProjectCard
-            color="bg-cyan-600"
-            title="Health Tracker App"
-            description="Android application for monitoring health metrics with real-time data visualization."
-            tags={['Java', 'Firebase', 'Room DB']}
-            link="https://github.com/majidali1256/HealthTrackerApp"
-          />
-          <ProjectCard
-            color="bg-blue-600"
-            title="Dast Store"
-            description="A modern E-Commerce platform with a fully functional shopping cart, seamless checkout process, and state persistence."
-            tags={['JavaScript', 'React', 'E-commerce']}
-            link="https://github.com/majidali1256/Dast-Store"
-          />
-          <ProjectCard
             color="bg-green-600"
             title="Hostel Hub WebApp"
             description="A comprehensive platform with AI-powered features for search, price estimation, and personalized recommendations."
-            tags={['TypeScript', 'React', 'Gemini AI']}
+            tags={['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'TailwindCSS', 'Gemini AI']}
             link="https://github.com/majidali1256/Hostel-Hub"
           />
           <ProjectCard
             color="bg-purple-600"
             title="Hostel Hub Mobile App"
             description="Native Android application for hostel management providing seamless onboarding and user experiences."
-            tags={['Kotlin', 'Java', 'Android']}
+            tags={['Kotlin', 'Java', 'Android SDK', 'Firebase', 'Room DB', 'Retrofit']}
             link="https://github.com/majidali1256/HostelHubApp"
+          />
+          <ProjectCard
+            color="bg-emerald-600"
+            title="A.N-Capital"
+            description="A professional business website focusing on capital and financial services."
+            tags={['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'jQuery']}
+            link="https://github.com/majidali1256/A.N-Capital"
           />
           <ProjectCard
             color="bg-yellow-600"
             title="Dezan Digitizing"
             description="Professional business website featuring custom backend for handling unlimited, large-file attachments directly to the server."
-            tags={['HTML', 'PHP', 'Web Development']}
+            tags={['PHP', 'MySQL', 'JavaScript', 'HTML5', 'CSS3', 'Apache']}
             link="https://github.com/majidali1256/dezan-digitizing"
+          />
+          <ProjectCard
+            color="bg-cyan-600"
+            title="Health Tracker App"
+            description="Android application for monitoring health metrics with real-time data visualization."
+            tags={['Java', 'Android SDK', 'Firebase', 'Room DB', 'XML Layouts']}
+            link="https://github.com/majidali1256/HealthTrackerApp"
+          />
+          <ProjectCard
+            color="bg-blue-600"
+            title="Dast Store"
+            description="A modern E-Commerce platform with a fully functional shopping cart, seamless checkout process, and state persistence."
+            tags={['React', 'JavaScript', 'Redux', 'Node.js', 'Express', 'MongoDB', 'TailwindCSS']}
+            link="https://github.com/majidali1256/Dast-Store"
           />
           <ProjectCard
             color="bg-red-600"
             title="Majid's Profile 1"
             description="A personal portfolio website showcasing professional details, projects, and educational background with dynamic aesthetics."
-            tags={['TypeScript', 'React', 'Portfolio']}
+            tags={['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'Vite']}
             link="https://github.com/majidali1256/Profile-1"
+          />
+          <ProjectCard
+            color="bg-pink-600"
+            title="FlowFit"
+            description="Premium E-Commerce Website & Shopify Theme."
+            tags={['Shopify Liquid', 'HTML5', 'CSS3', 'JavaScript', 'TailwindCSS']}
+            link="https://github.com/majidali1256/FlowFit"
           />
         </motion.div>
       </section>
@@ -621,14 +635,20 @@ const SkillCard = ({ name, icon, color }) => (
   </motion.div>
 );
 
-const ProjectCard = ({ color, title, description, tags, link }) => (
+const ProjectCard = ({ color, title, description, tags, link, image }) => (
   <motion.div
     variants={fadeInUp}
     whileHover={{ y: -10 }}
     className="bg-[#1E293B] rounded-xl overflow-hidden shadow-xl border border-gray-700 flex flex-col">
-    <div className={`h-40 ${color} flex items-center justify-center relative`}>
-      <div className="w-12 h-12 bg-white rounded-full shadow-lg"></div>
-    </div>
+    {image ? (
+      <div className="h-40 w-full overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover" />
+      </div>
+    ) : (
+      <div className={`h-40 ${color} flex items-center justify-center relative`}>
+        <div className="w-12 h-12 bg-white rounded-full shadow-lg"></div>
+      </div>
+    )}
     <div className="p-6 flex-1 flex flex-col">
       <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
       <p className="text-gray-400 text-sm mb-4 flex-grow">{description}</p>
