@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# Majid's Profile
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio web app built with React and Vite. It presents Majid Ali’s background, technical skills, featured projects, and contact details in a single-page, animated UI.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Animated single-page portfolio layout powered by Framer Motion
+- Sections for intro, about, education, leadership, skills, and projects
+- Contact area with quick links (email/GitHub/location)
+- Contact form that opens the user’s email client using a `mailto:` link
+- Tailwind CSS v4 styling integrated through Vite
 
-## React Compiler
+## Technology Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite 7
+- Tailwind CSS 4 (`@tailwindcss/vite` plugin)
+- Framer Motion
+- React Icons
+- ESLint 9 (flat config)
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 18+ (recommended current LTS)
+- npm
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Install dependencies
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Run the project
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Start development server
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview production build locally
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Configuration / Environment Variables
+
+This project currently does not use any environment variables. All displayed content is hardcoded in `src/App.jsx`.
+
+## Usage Examples
+
+- Open the app, click **View My Work** to jump to the projects section.
+- Click **Contact Me** or scroll to **Send me a Message**, fill the form, and submit to open your default email client with a prefilled message.
+
+## Project Structure
+
+```text
+.
+├── index.html
+├── package.json
+├── vite.config.js
+├── eslint.config.js
+└── src/
+    ├── main.jsx
+    ├── App.jsx
+    ├── index.css
+    └── assets/
+```
+
+## Testing and Build Notes
+
+- There is currently no automated test suite configured in this repository.
+- Use `npm run lint` and `npm run build` to validate code quality and production build output.
+
+## Deployment Notes
+
+- Build artifacts are generated in `dist/` via `npm run build`.
+- Because this is a Vite single-page app, it can be deployed to static hosts (for example: GitHub Pages, Netlify, Vercel, Cloudflare Pages) that serve `dist/`.
+- Configure your host to return `index.html` for client-side routes if you add route-based navigation later.
